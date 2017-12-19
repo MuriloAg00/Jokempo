@@ -1,0 +1,120 @@
+from random import randint
+from time import sleep
+
+while True:
+    item  = ("tesoura","pedra","papel")
+    jogador = input("digite seu nome de jogador : ").capitalize()
+    sleep(0.5)
+    print("Ola {} vamos joga Jokenpo [s] [n] ".format(jogador))
+    sair = input("--> ").upper()
+    if sair == ("N"):
+        break
+    elif sair == ("S"):
+        j = 0
+        pc = 0
+        while True:
+            sleep(0.5)
+            print("Placar")
+            print("{} ---> {}".format(jogador,j))
+            print("Maquina ---> {}".format(pc))
+            if (pc == 3) or (j == 3):
+                if pc == 3:
+                    print("Voce foi derrotado, a Maquina venceu")
+                    sleep(1)
+                    quest1 = input("Quer jogar novamente ? [S/N] ").upper()
+                    if quest1 == "N":
+                        print(" Obrigado por jogar {}".format(jogador))
+                        break
+                    elif quest1 == "S":
+                        print("Dessa vez voce consegue {} ".format(jogador))
+                        j = 0
+                        pc = 0
+                    else:
+                        print("entrada invalida,somente [S/N]")
+                        continue
+                else:
+                    print("Voce derrotou a Maquina, Parabens {}!!!".format(jogador))
+                    sleep(1)
+                    quest1 = input("Quer jogar novamente ? [S/N] ").upper()
+                    if quest1 == "N":
+                        print(" Obrigado por jogar {}".format(jogador))
+                        break
+                    elif quest1 == "S":
+                        print("Vamos derrotar a Maquina novamente {} ".format(jogador))
+                        j = 0
+                        pc = 0
+                    else:
+                        print("entrada invalida,somente [S/N]")
+                        continue
+
+            else:
+                maquina = randint(0,2)
+                sleep(1)
+                print("""----escolha sua jogada----
+                [ 1 ] tesoura
+                [ 2 ] pedra
+                [ 3 ] papel
+                [ 0 ] sair 
+                """)
+                quest = (input("digite sua escolha : "))
+                if (quest == "1") or (quest == "2") or (quest == "3"):
+                    print("=-"*20)
+                    sleep(1)
+                    print("  JO  ")
+                    sleep(1)
+                    print("  Ken  ")
+                    sleep(1)
+                    print("  PO!!")
+                    sleep(1)
+                    print("=-"*20)
+                    sleep(2)
+                    print ("Maquina escolheu {}".format(item[maquina]))
+                    while (quest != "0") and (pc != 3 or j != 3):
+                            if maquina >= 0:
+                                if (quest == "1" and maquina == 0) or (quest == "2" and maquina == 1) or (quest == "3" and maquina == 2):
+                                    print("Empate!!...ninguem ganha ponto")
+                                    break
+                                elif (quest == "1") and (maquina == 2):
+                                    print("um ponto pra você!")
+                                    j += 1
+                                    break
+                                elif (quest == "1") and (maquina == 1):
+                                    print("um ponto pra maquina!")
+                                    pc += 1
+                                    break
+                                elif (quest == "2") and (maquina == 0):
+                                    print("um ponto pra você!")
+                                    j += 1
+                                    break
+                                elif (quest == "2") and (maquina == 2):
+                                    print("um ponto pra maquina!")
+                                    pc += 1
+                                    break
+                                elif (quest == "3") and (maquina == 1):
+                                    print("um ponto pra você!")
+                                    j += 1
+                                    break
+                                elif (quest == "3") and (maquina == 0):
+                                    print("um ponto pra maquina!")
+                                    pc += 1
+                                    break
+
+
+                    else:
+
+                        if pc == 3:
+                                print("Voce foi derrotado, a Maquina venceu")
+                                break
+                        elif j == 3:
+                                print("Voce derrotou a Maquina, Parabens {}!!!".format(jogador))
+                                break
+                elif quest == "0":
+                    print ("Obrigado por jogar")
+                    sleep(1)
+                    break
+                else:
+                    print("Jogada Invalida!!")
+
+
+    else:
+        print("opção invalida !!!.. somente [S] ou [N]")
